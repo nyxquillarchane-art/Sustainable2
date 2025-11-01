@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sustainable Energy Hub — Clean Power Guides & Action</title>
+  <meta name="description" content="Sustainable Energy Hub: Educating on all forms of clean energy, including costs, climate impact, global trends, and personal action steps."/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    /* 1. Core Variables & Resets */
+    :root{
+      --bg-light:#f4fff8;--bg-dark:#eef7f1;--card:#fff;--accent:#3cb75c;--accent-dark:#2a974b;
+      --muted:#55695f;--shadow:0 8px 30px rgba(11,25,18,0.08);--maxw:1100px;
+    }
+    *{box-sizing:border-box}html,body{height:100%;margin:0;scroll-behavior:smooth}
+    body{
+      font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,Arial;color:#0b2b1f;
+      background:linear-gradient(180deg,var(--bg-light),var(--bg-dark));-webkit-font-smoothing:antialiased;
+      line-height:1.5;
+    }
+
+    /* 2. Header & Hero */
+    header{padding:2rem 1rem 0;text-align:center;position:relative;overflow:hidden;min-height:360px}
+    .brand{font-family:'Playfair Display',serif;color:var(--accent-dark);font-weight:700;font-size:1.1rem;margin-bottom:0.4rem}
+    .hero{max-width:var(--maxw);margin:0 auto;padding:1.4rem}
+    .hero h1{margin:0;font-size:2.4rem;line-height:1.1;color:#113322}
+    .hero p.tagline{color:var(--muted);margin:.6rem 0 1rem;font-size:1.1rem}
+    .art{position:absolute;right:-80px;top:-40px;opacity:.15;filter:blur(2px);width:540px;height:420px;pointer-events:none}
+    
+    /* 3. Navigation */
+    nav{
+      background:rgba(255,255,255,0.95);backdrop-filter:blur(6px);box-shadow:0 2px 8px rgba(0,0,0,0.06);
+      display:flex;justify-content:center;flex-wrap:wrap;padding:0.5rem 0;position:sticky;top:0;z-index:999;
+    }
+    nav a{
+      margin:0.3rem 0.8rem;color:var(--accent-dark);text-decoration:none;font-weight:600;font-size:0.95rem;
+      padding:0.3rem 0;position:relative;
+    }
+    nav a:hover::after{width:100%}
+    nav a::after{
+      content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--accent);
+      transition:width .2s ease-in-out;
+    }
+
+    /* 4. Main Layout & Typography */
+    main{max-width:var(--maxw);margin:2rem auto;padding:0 1rem 4rem}
+    section{margin-bottom:2.5rem}
+    h2{font-family:'Playfair Display',serif;color:var(--accent-dark);text-align:center;margin-bottom:1.5rem}
+    .kicker{font-size:.85rem;color:var(--accent);font-weight:700;margin-bottom:.5rem;text-align:center}
+    
+    /* 5. Cards & Grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+    .card{
+      background:var(--card);padding:1.5rem;border-radius:14px;border:1px solid rgba(12,34,21,0.05);
+      box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease;
+    }
+    .card:hover{transform:translateY(-4px);box-shadow:0 15px 40px rgba(12,34,21,0.1)}
+    .source-card h3{margin:.2rem 0 .6rem 0;color:#113322;font-size:1.3rem;display:flex;align-items:center;gap:0.5rem}
+    .source-card p{margin:0 0 0.8rem 0;color:var(--muted);font-size:.95rem}
+    .pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.8rem}
+    .pros-cons strong{color:var(--accent-dark)}
+    .chip-group{margin-top:0.8rem;border-top:1px solid var(--bg-dark);padding-top:0.8rem}
+    .chip{display:inline-block;background:var(--bg-light);padding:.35rem .7rem;border-radius:999px;margin:.3rem .3rem 0 0;font-size:.85rem;color:var(--accent-dark)}
+    .learn-link{display:block;margin-top:1rem;padding:.5rem 1rem;border-radius:10px;background:var(--bg-dark);border:1px solid rgba(20,55,40,0.06);font-weight:600;text-decoration:none;color:var(--accent-dark);text-align:center}
+
+    /* 6. Comparison Table */
+    .compare-wrap{margin-top:2rem;background:linear-gradient(180deg,rgba(60,183,92,0.06),transparent);padding:1.5rem;border-radius:12px;overflow-x:auto}
+    table{width:100%;border-collapse:collapse;min-width:600px}
+    thead th{text-align:left;padding:.8rem .9rem;color:white;background:var(--accent-dark);font-weight:700}
+    tbody td{padding:.8rem .9rem;border-top:1px solid rgba(15,23,16,0.06);color:#21332c;vertical-align:top}
+    tbody tr:nth-child(even) td{background-color:rgba(240,248,244,0.5)}
+
+    /* 7. Footer & Contact */
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    form{display:flex;flex-direction:column;gap:.8rem}
+    input,textarea,select{padding:.8rem;border-radius:8px;border:1px solid rgba(10,30,20,0.1);font-size:1rem}
+    button[type=submit]{background:var(--accent);color:white;padding:.8rem;border-radius:8px;border:none;font-weight:700;cursor:pointer}
+    footer{max-width:var(--maxw);margin:2rem auto;padding:1.5rem;color:var(--muted);text-align:center;font-size:.9rem}
+    
+    /* 8. Chatbot Placeholder Style */
+    .chat-float{position:fixed;right:20px;bottom:20px;z-index:9999}
+    .chat-btn{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent-dark);color:white;font-weight:800;box-shadow:0 12px 30px rgba(13,33,20,0.25);cursor:pointer;font-size:1.8rem}
+
+    /* 9. Media Queries for Responsiveness */
+    @media (max-width:800px){.cols{grid-template-columns:1fr}}
+    @media (max-width:640px){
+      .hero h1{font-size:1.8rem}
+      .art{display:none}
+      .chat-btn{width:50px;height:50px}
+      nav a{margin:0.3rem 0.5rem;font-size:0.9rem}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <svg class="art" viewBox="0 0 700 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#9fe7b7"/><stop offset="1" stop-color="#3cb75c"/></linearGradient>
+        <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#c3e7da"/><stop offset="1" stop-color="#9fe7b7"/></linearGradient>
+      </defs>
+      <path d="M20 320 C110 220, 260 200, 380 240 C500 280,640 200,740 240 L740 520 L0 520 Z" fill="url(#g1)" opacity="0.85"/>
+      <path d="M-20 220 C50 120,220 80,360 120 C500 160,660 100,820 160 L820 480 L-20 480 Z" fill="url(#g2)" opacity="0.9"/>
+    </svg>
+
+    <div class="hero" role="banner">
+      <div class="brand">Sustainable Energy Hub</div>
+      <h1>Exploring clean, efficient, and climate-friendly power for our shared future 🌍</h1>
+      <p class="tagline">Concise, honest guides to all sustainable sources, trade-offs, global trends, and actionable personal steps.</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#intro">Intro</a>
+    <a href="#sources">Sources</a>
+    <a href="#comparison">Compare</a>
+    <a href="#future">Future Tech</a>
+    <a href="#global">Global</a>
+    <a href="#careers">Careers</a>
+    <a href="#action">Action</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <p class="kicker">WHY SUSTAINABLE ENERGY MATTERS</p>
+      <h2>The Global Energy Transition is Urgent and Possible</h2>
+      <div class="card" style="text-align:center">
+        <p style="color:#113322;font-size:1.05rem;font-weight:600">Transitioning to sustainable energy reduces emissions, stabilizes long-term energy costs, and builds resilient power systems. Our goal is a net-zero future, requiring a mix of technologies—each with its own benefits and trade-offs. Finding the right mix is key to protecting both climate and communities.</p>
+        <div class="cols" style="margin-top:1.2rem">
+            <div><p class="muted"><strong>Quick Stat:</strong> Global renewable electricity capacity has more than doubled in the last decade (IRENA).</p></div>
+            <div><p class="muted"><strong>Climate Goal:</strong> Decarbonization of the power sector is responsible for over 70% of potential emissions cuts.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <p class="kicker">IN-DEPTH GUIDES</p>
+      <h2>Sustainable Energy Sources</h2>
+      <div class="grid">
+
+        <article class="card source-card" id="solar">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffb700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>Solar Energy</h3>
+          <p>Photovoltaic (PV) panels convert sunlight directly into electricity. It is highly scalable, from residential rooftops to utility-scale farms, and has seen the steepest cost declines.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Abundant, decentralized, very low maintenance.</div>
+            <div><strong>Cons:</strong> Intermittent, requires energy storage (batteries).</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $20–40/MWh</span>
+            <span class="chip">Efficiency: 15–22%</span>
+            <span class="chip">Emissions: Very Low (Lifecycle)</span>
+            <span class="chip">Best Use: Distributed/Residential & Utility Scale</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/solar/solar-energy-technologies-office" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+
+        <article class="card source-card" id="wind">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2a974b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V2M15 15l-3 3-3-3M12 15V3.5M10 5l4 4M10 9l4 4"/></svg>Wind Energy</h3>
+          <p>Turbines harness air currents to produce electricity. It is cost-competitive at scale, particularly offshore wind, which offers more consistent and stronger wind profiles.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Mature technology, high capacity factors (offshore).</div>
+            <div><strong>Cons:</strong> Variable output, visual impact, site-dependent, minor wildlife risk.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $30–50/MWh</span>
+            <span class="chip">Efficiency: 35–50%</span>
+            <span class="chip">Emissions: Very Low (Lifecycle)</span>
+            <span class="chip">Best Use: Utility Scale (Onshore & Offshore)</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/wind/wind-energy-technologies-office" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+        
+        <article class="card source-card" id="hydro">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#339af0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-4.42 3.58-8 8-8 4.42 0 8 3.58 8 8 0 4.42-3.58 8-8 8zM12 6v6l4 2"/></svg>Hydropower</h3>
+          <p>Uses flowing water (rivers/dams) to spin turbines. Large reservoirs offer **dispatchable** power (can be turned on/off) and massive energy storage capacity (pumped hydro).</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> High reliability, excellent storage and grid balancing.</div>
+            <div><strong>Cons:</strong> Major ecological/social impacts from dam construction, location limited.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $40–80/MWh</span>
+            <span class="chip">Efficiency: ~90% (Conversion)</span>
+            <span class="chip">Emissions: Low (Reservoir methane)</span>
+            <span class="chip">Best Use: Baseload & Grid Stability</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/water/hydropower-basics" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+
+        <article class="card source-card" id="geothermal">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f76707" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 18V6M9 9l3 3 3-3M9 15l3-3 3 3"/></svg>Geothermal Energy</h3>
+          <p>Taps Earth’s internal heat for electricity and direct heating/cooling. Provides highly consistent, 24/7 **baseload** power where the required geological conditions are met.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Extremely reliable (high capacity factor), small surface footprint.</div>
+            <div><strong>Cons:</strong> Location-limited (tectonic areas), high upfront drilling costs.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $50–100/MWh</span>
+            <span class="chip">Efficiency: 10–20% (Heat conversion)</span>
+            <span class="chip">Emissions: Very Low (Minor non-condensable gas release)</span>
+            <span class="chip">Best Use: Reliable Baseload Power</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/geothermal/geothermal-basics" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+
+        <article class="card source-card" id="biomass">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#82c91e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h-2c-1.1 0-2 .9-2 2v2H6V6h2c1.1 0 2-.9 2-2V2M14 10v10h2c1.1 0 2-.9 2-2v-8h-4z"/></svg>Biomass</h3>
+          <p>Organic material (wood, waste, crops) burned to produce heat or converted to biofuels. It is a dispatchable source, but its sustainability depends entirely on feedstock management.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Utilizes waste products, easily dispatchable (like coal).</div>
+            <div><strong>Cons:</strong> High land use, net emissions can be high if harvest is poorly managed.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $50–110/MWh</span>
+            <span class="chip">Efficiency: 20–35%</span>
+            <span class="chip">Emissions: Variable (Depends on lifecycle/source)</span>
+            <span class="chip">Best Use: Waste-to-Energy, Biofuels</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/bioenergy/bioenergy-basics" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+
+        <article class="card source-card" id="nuclear">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>Nuclear Fission</h3>
+          <p>Fission reactors provide extremely dense, 24/7 carbon-free power. Offers energy independence and grid stability. Challenges remain around waste, safety, and capital costs.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> High capacity factor (reliable baseload), minimal CO₂ during operation.</div>
+            <div><strong>Cons:</strong> Expensive and slow construction, long-term waste disposal.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $100–150+/MWh (High Capex)</span>
+            <span class="chip">Efficiency: ~33%</span>
+            <span class="chip">Emissions: Very Low (Operational)</span>
+            <span class="chip">Best Use: Centralized Baseload Power</span>
+          </div>
+          <a class="learn-link" href="https://world-nuclear.org/information-library/current-and-future-generation/nuclear-power-in-the-world-today.aspx" target="_blank" rel="noopener">Learn More (World Nuclear)</a>
+        </article>
+        
+        <article class="card source-card" id="hydrogen">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1c7ed6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4h4"/></svg>Hydrogen</h3>
+          <p>A versatile energy carrier, produced via electrolysis (**green**) or fossil fuels (**grey/blue**). It can decarbonize sectors like heavy transport, steel, and cement that are hard to electrify.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Zero emission at point of use (in fuel cells), multi-sectoral use.</div>
+            <div><strong>Cons:</strong> Production cost, storage/transport infrastructure challenges.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: Varies (Currently High for Green)</span>
+            <span class="chip">Efficiency: 40–60% (Fuel cell conversion)</span>
+            <span class="chip">Emissions: Production Dependent (Green = None)</span>
+            <span class="chip">Best Use: Industrial Feedstock, Heavy Transport</span>
+          </div>
+          <a class="learn-link" href="https://www.iea.org/reports/the-future-of-hydrogen" target="_blank" rel="noopener">Learn More (IEA)</a>
+        </article>
+
+        <article class="card source-card" id="tidal">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#15aabf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12c0-2-2-4-4-4s-4 2-4 4-2 4-4 4-4-2-4-4 2-4 4-4M4 12h2M18 12h2"/></svg>Tidal & Wave</h3>
+          <p>Marine energy harnesses predictable ocean tides and wave action. Tidal stream projects are highly reliable but face high capital costs and the challenges of a harsh marine environment.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Highly predictable output (tidal), vast global resource.</div>
+            <div><strong>Cons:</strong> High engineering cost, early-stage technology, marine life impact.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: $100–300/MWh</span>
+            <span class="chip">Efficiency: 30–50%</span>
+            <span class="chip">Emissions: Very Low</span>
+            <span class="chip">Best Use: Coastal Regions with Strong Tides</span>
+          </div>
+          <a class="learn-link" href="https://www.energy.gov/eere/water/marine-energy-basics" target="_blank" rel="noopener">Learn More (US DOE)</a>
+        </article>
+        
+        <article class="card source-card" id="fusion">
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fab005" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 10V4M20 12H14M12 20v-6M4 12h6M16 8l-4 4-4-4"/></svg>Fusion (Emerging)</h3>
+          <p>The process that powers the sun—fusing light nuclei—promises virtually limitless, clean energy without long-lived radioactive waste. It remains an R&D challenge, but progress is accelerating globally.</p>
+          <div class="pros-cons">
+            <div><strong>Pros:</strong> Virtually limitless fuel, no CO₂, inherent safety.</div>
+            <div><strong>Cons:</strong> Still experimental, immense engineering challenge, high costs.</div>
+          </div>
+          <div class="chip-group">
+            <span class="chip">Cost: Unknown (Future)</span>
+            <span class="chip">Efficiency: High (Theoretical)</span>
+            <span class="chip">Emissions: Negligible</span>
+            <span class="chip">Best Use: Future Baseload Power</span>
+          </div>
+          <a class="learn-link" href="https://www.iter.org/" target="_blank" rel="noopener">Learn More (ITER Project)</a>
+        </article>
+
+      </div>
+    </section>
+    
+    <section id="comparison">
+      <p class="kicker">HEAD-TO-HEAD</p>
+      <h2>Energy Source Comparison</h2>
+      <div class="compare-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Source</th>
+              <th>Cost ($/MWh)</th>
+              <th>Efficiency</th>
+              <th>Emissions (Lifecycle)</th>
+              <th>Recommended Use</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Solar PV</td><td>20–40 (Low)</td><td>15–22%</td><td>Very Low</td><td>Distributed & Utility Arrays</td></tr>
+            <tr><td>Wind</td><td>30–50 (Low)</td><td>35–50%</td><td>Very Low</td><td>Utility Scale (Onshore/Offshore)</td></tr>
+            <tr><td>Hydro</td><td>40–80 (Moderate)</td><td>~90%</td><td>Low (Ecological Trade-offs)</td><td>Grid Stability & Storage</td></tr>
+            <tr><td>Geothermal</td><td>50–100 (Moderate–High)</td><td>10–20%</td><td>Very Low</td><td>Reliable Baseload</td></tr>
+            <tr><td>Nuclear</td><td>100+ (High Capex)</td><td>~33%</td><td>Very Low (Operational)</td><td>Centralized Baseload</td></tr>
+            <tr><td>Biomass</td><td>50–110 (Moderate–High)</td><td>20–35%</td><td>Variable (Source Dependent)</td><td>Waste-to-Energy, Biofuels</td></tr>
+            <tr><td>Hydrogen</td><td>Varies (High for Green)</td><td>40–60%</td><td>Production Dependent</td><td>Industrial Feedstock, Heavy Transport</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="future">
+      <p class="kicker">ACCELERATING INNOVATION</p>
+      <h2>Future Technologies: The Next Generation</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Green Hydrogen & Fuel Cells</h3>
+          <p class="muted">Scaling affordable green hydrogen (produced via renewable electricity) is key to decarbonizing 'hard-to-abate' sectors like steel, shipping, and cement. Fuel cells then convert it back to electricity with only water as a byproduct.</p>
+        </div>
+        <div class="card">
+          <h3>Advanced Battery Storage (LDS)</h3>
+          <p class="muted">Long-Duration Storage (LDS), using cheaper chemistries like flow batteries or thermal storage, is essential for balancing a grid reliant on solar and wind by providing power for days, not just hours.</p>
+        </div>
+        <div class="card">
+          <h3>Small Modular Reactors (SMRs)</h3>
+          <p class="muted">SMRs are smaller, factory-built nuclear reactors designed to reduce capital costs and construction time compared to large conventional plants, potentially making nuclear power more flexible and accessible.</p>
+        </div>
+        <div class="card">
+          <h3>Enhanced Geothermal Systems (EGS)</h3>
+          <p class="muted">EGS aims to inject water into hot, dry rock to create artificial reservoirs, potentially unlocking geothermal power in nearly any location, not just tectonically active areas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="global">
+      <p class="kicker">ADOPTION & TRENDS</p>
+      <h2>Global Snapshot: Who's Leading the Way</h2>
+      <div class="card">
+        <div class="cols">
+          <div>
+            <h3>Leading Countries & Trends</h3>
+            <p class="muted">Countries with strong policy mandates often lead. **China** dominates in installed Solar PV capacity, while the **Nordic countries** (Norway, Sweden) have high penetration of hydropower and wind.</p>
+            <p class="muted">The **EU** leads in offshore wind development, and the **US** is pushing aggressive tax incentives to accelerate domestic manufacturing and deployment (IRA).</p>
+          </div>
+          <div>
+            <h3>What to Watch</h3>
+            <p class="muted">The global trend is toward **decentralization** (local power generation) and **electrification** (replacing fossil fuels in vehicles and buildings). Total installed renewable capacity is setting new records every year, but deployment must accelerate to meet climate targets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="careers">
+      <p class="kicker">YOUR ROLE IN THE TRANSITION</p>
+      <h2>Careers in Clean Energy</h2>
+      <div class="card">
+        <div class="cols">
+          <div>
+            <h3>Popular Roles</h3>
+            <ul class="muted">
+              <li>**Renewable Energy Engineer:** Designing and optimizing solar, wind, or hydro projects.</li>
+              <li>**Grid Analyst/Integrator:** Modeling and managing the integration of variable renewables.</li>
+              <li>**Sustainability/Policy Consultant:** Advising governments or companies on energy transition strategy.</li>
+              <li>**Electrician/Installer:** The high-demand roles for system installation and maintenance.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Key Skills Needed</h3>
+            <ul class="muted">
+              <li>STEM knowledge (Electrical/Mechanical Engineering, Physics).</li>
+              <li>Data analysis and modeling (Python, R).</li>
+              <li>Project management and finance.</li>
+              <li>Policy, law, and environmental assessment.</li>
+            </ul>
+            <a class="learn-link" href="https://irena.org/publications/2023/Sep/Renewable-Energy-and-Jobs-Annual-Review-2023" target="_blank" rel="noopener">Resources (IRENA Jobs Review)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="action">
+      <p class="kicker">IMMEDIATE IMPACT</p>
+      <h2>Personal Action: What You Can Do Today</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>1. Improve Home Efficiency</h3>
+          <p class="muted">Switch to LED lighting, air-seal your windows, and upgrade to a smart thermostat. This is often the most cost-effective first step to reducing your energy footprint.</p>
+          <p class="muted" style="font-size:0.85rem;margin-top:0.5rem">Cost Saving: Very High (Lower utility bills)</p>
+        </div>
+        <div class="card">
+          <h3>2. Switch Your Energy Source</h3>
+          <p class="muted">If available, choose a Green Power or 100% Renewable tariff from your utility. For homeowners, consider rooftop solar and home battery backup to maximize self-consumption.</p>
+          <p class="muted" style="font-size:0.85rem;margin-top:0.5rem">Impact: Direct support for clean energy infrastructure.</p>
+        </div>
+        <div class="card">
+          <h3>3. Advocate and Vote</h3>
+          <p class="muted">Support local and national policies that promote clean energy infrastructure, carbon pricing, and a just transition for fossil fuel workers and communities.</p>
+          <p class="muted" style="font-size:0.85rem;margin-top:0.5rem">Impact: High (Systemic change)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <p class="kicker">FEEDBACK & INQUIRIES</p>
+      <h2>Contact Us</h2>
+      <div class="card">
+        <p class="muted">This form is a static HTML placeholder. To collect submissions, you must connect it to a service like **Netlify Forms**, **Formspree**, or a custom server endpoint.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you! This is a placeholder form and has not sent a message.');">
+          <input name="name" type="text" placeholder="Your Name" required>
+          <input name="email" type="email" placeholder="Email Address" required>
+          <select name="topic">
+            <option>General Inquiry</option>
+            <option>Content Feedback</option>
+            <option>Partnership/Collaboration</option>
+          </select>
+          <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+          <button type="submit">Send Message (Placeholder)</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div style="max-width:var(--maxw);margin:0 auto;padding:0 1rem">
+      &copy; 2025 Sustainable Energy Hub • Data sources primarily from **IEA, US DOE, IRENA, and World Nuclear Association** • All links verified.
+    </div>
+  </footer>
+
+  <div id="chat-placeholder" class="chat-float" aria-label="Open live chat for energy advice">
+    <div id="chat-btn" class="chat-btn" title="Open energy advice chat">💡</div>
+  </div>
+  
+  <script>
+    // Simple script to demonstrate a clickable chat button placeholder
+    document.getElementById('chat-btn').addEventListener('click', function() {
+      alert('This is the Chatbot Placeholder. To activate, replace the code above with your live chat provider script (e.g., Tidio).');
+    });
+  </script>
+
+</body>
+</html>
